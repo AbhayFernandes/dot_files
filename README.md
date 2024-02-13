@@ -5,5 +5,5 @@
 
 ### Current issues
 
--- No install script
--- No concrete dependency list
+- No install script
+- No concrete dependency list
