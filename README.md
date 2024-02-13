@@ -1,4 +1,4 @@
-# .dotfiles
+# My Dotfiles:
 
 1. Clone this repository
 2. Run `install.sh` (Not yet implemented)
