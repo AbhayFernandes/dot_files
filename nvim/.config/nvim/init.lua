@@ -21,10 +21,17 @@ require("lazy").setup({
     'dylanaraps/wal.vim',
 	'nvim-treesitter/nvim-treesitter',
 	'mbbill/undotree',
-    'goolord/alpha-nvim',
-    'zbirenbaum/copilot.lua',
 	'tpope/vim-fugitive',
     'ggandor/leap.nvim',
+    'nvim-lualine/lualine.nvim',
+    -- Alpha nvim setup
+    {
+        'goolord/alpha-nvim',
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.startify'.config)
+        end
+    },
+
 	-- LSP-zero setup
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
@@ -44,6 +51,17 @@ require("lazy").setup({
             "MunifTanjim/nui.nvim",
             "3rd/image.nvim",
         }
-    }
+    },
+
+    -- Copilot extensions
+    'zibernbaum/copilot.lua',
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function ()
+            require("copilot_cmp").setup()
+        end
+    },
+    'AndreM222/copilot-lualine'
 }, opts)
 
+vim.loader.enable()
