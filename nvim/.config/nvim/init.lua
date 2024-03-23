@@ -16,6 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
 	'nvim-lua/plenary.nvim',
     'dylanaraps/wal.vim',
@@ -62,6 +63,7 @@ require("lazy").setup({
         end
     },
     'AndreM222/copilot-lualine'
+
 }, opts)
 
 vim.loader.enable()
