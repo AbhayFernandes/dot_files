@@ -20,20 +20,11 @@ require("lazy").setup({
 	'nvim-lua/plenary.nvim',
     'dylanaraps/wal.vim',
 	'nvim-treesitter/nvim-treesitter',
-	'theprimeagen/harpoon',
 	'mbbill/undotree',
-    'github/copilot.vim',
+    'goolord/alpha-nvim',
+    'zbirenbaum/copilot.lua',
 	'tpope/vim-fugitive',
     'ggandor/leap.nvim',
-    {"nvim-neotest/neotest",
-        dependencies = {
-            "nvim-neotest/neotest-python",
-            "nvim-neotest/neotest-plenary",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter"
-        }
-    },
 	-- LSP-zero setup
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
@@ -42,39 +33,6 @@ require("lazy").setup({
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'L3MON4D3/LuaSnip'},
-
-    -- nvim-dap setup
-    {'mfussenegger/nvim-dap'},
-    {'mfussenegger/nvim-dap-python',
-        ft = {'python'},
-        dependencies = {
-            'mfussenegger/nvim-dap',
-            'mfussenegger/nvim-dap-ui',
-        },
-        config = function()
-            local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-            require('dap-python').setup(path)
-            require("dap-python").test_runner = 'unittest'
-        end
-    },
-    { "rcarriga/nvim-dap-ui",
-        dependencies = { "mfussenegger/nvim-dap" },
-        config = function()
-            local dap = require('dap')
-            local dapui = require('dapui')
-            dapui.setup()
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open()
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function ()
-                dapui.close()
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function ()
-                dapui.close()
-            end
-        end
-    },
-    { "nvim-telescope/telescope-dap.nvim", requires = { "mfussenegger/nvim-dap" } },
 
     -- Nerd-Tree 
     {
