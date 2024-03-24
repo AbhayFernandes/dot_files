@@ -31,13 +31,20 @@ require('mason-lspconfig').setup({
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
+require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
+    },
     sources = {
         {name = 'copilot'},
         {name = 'path'},
         {name = 'nvim_lsp'},
         {name = 'nvim_lua'},
+        {name = 'luasnip'},
     },
     formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({

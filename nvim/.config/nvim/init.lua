@@ -25,6 +25,7 @@ require("lazy").setup({
 	'tpope/vim-fugitive',
     'ggandor/leap.nvim',
     'nvim-lualine/lualine.nvim',
+
     -- Alpha nvim setup
     {
         'goolord/alpha-nvim',
@@ -40,7 +41,9 @@ require("lazy").setup({
 	{'neovim/nvim-lspconfig'},
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
-	{'L3MON4D3/LuaSnip'},
+	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
+    {'saadparwaiz1/cmp_luasnip'},
+    { "rafamadriz/friendly-snippets" },
 
     -- Nerd-Tree 
     {
@@ -55,7 +58,7 @@ require("lazy").setup({
     },
 
     -- Copilot extensions
-    'zibernbaum/copilot.lua',
+    "zbirenbaum/copilot.lua",
     {
         "zbirenbaum/copilot-cmp",
         config = function ()
