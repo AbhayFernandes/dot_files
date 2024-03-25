@@ -34,6 +34,19 @@ require("lazy").setup({
         end
     },
 
+    -- Nvim-Navbuddy Setup
+    {"neovim/nvim-lspconfig",
+    dependencies = {
+        {
+            "SmiteshP/nvim-navbuddy",
+            dependencies = {
+                "SmiteshP/nvim-navic",
+                "MunifTanjim/nui.nvim"
+            },
+            opts = { lsp = { auto_attach = true } }
+        }
+    }},
+
 	-- LSP-zero setup
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
@@ -42,6 +55,7 @@ require("lazy").setup({
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
+    {'SmiteshP/nvim-navic', requires = "neovim/nvim-lspconfig"},
     {'saadparwaiz1/cmp_luasnip'},
     {"rafamadriz/friendly-snippets" },
     {'mrcjkb/rustaceanvim', version = '^4', ft = { 'rust' }},
