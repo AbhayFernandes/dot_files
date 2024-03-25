@@ -43,7 +43,8 @@ require("lazy").setup({
 	{'hrsh7th/nvim-cmp'},
 	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
     {'saadparwaiz1/cmp_luasnip'},
-    { "rafamadriz/friendly-snippets" },
+    {"rafamadriz/friendly-snippets" },
+    {'mrcjkb/rustaceanvim', version = '^4', ft = { 'rust' }},
 
     -- Nerd-Tree 
     {
