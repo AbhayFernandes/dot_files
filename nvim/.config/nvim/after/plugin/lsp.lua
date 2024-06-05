@@ -1,7 +1,7 @@
 local lsp_zero = require('lsp-zero')
-local lsp_config = require('lspconfig')
 local navic = require('nvim-navic')
 local navbuddy = require('nvim-navbuddy')
+local mason = require('mason-registry')
 
 lsp_zero.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
@@ -31,11 +31,26 @@ vim.g.rustaceanvim = {
 }
 
 require('mason').setup({})
+local jdtls_install_dir = mason.get_package("jdtls"):get_install_path()
+
 require('mason-lspconfig').setup({
     ensure_installed = {'rust_analyzer'},
     handlers = {
         lsp_zero.default_setup,
         rust_analyzer = lsp_zero.noop,
+        denols = require('lspconfig').denols.setup({
+            on_attach = function(client, bufnr)
+            end,
+        });
+        jdtls = function ()
+            require('lspconfig').jdtls.setup({
+                cmd = {
+                    "jdtls",
+                    "--jvm-arg=-javaagent:"
+                    .. jdtls_install_dir .. "/lombok.jar",
+                },
+            })
+        end,
     }
 })
 
@@ -50,34 +65,30 @@ cmp.setup({
         end
     },
     sources = {
-        {name = 'copilot'},
-        {name = 'path'},
-        {name = 'nvim_lsp'},
+        {name = 'nvim_lsp', priority_weight = 7},
         {name = 'nvim_lua'},
-        {name = 'luasnip'},
+        {name = 'path'},
+        {name = 'luasnip', priority_weight = 5},
     },
-    formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
         ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
         ['<Return>'] = cmp.mapping.confirm({ select = false }),
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
     sorting = {
-        priority_weight = 2,
+        priority_weight = 1,
         comparators = {
-            require('copilot_cmp.comparators').prioritize,
-
-            -- Below is the default comparitor list and order for nvim-cmp
-            cmp.config.compare.offset,
+            -- Below is the default comparator list and order for nvim-cmp
             -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
-            cmp.config.compare.recently_used,
             cmp.config.compare.locality,
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.score,
+            cmp.config.compare.offset,
             cmp.config.compare.order,
+            -- cmp.config.compare.exact,
+            -- cmp.config.compare.kind,
+            -- cmp.config.compare.sort_text,
+            -- cmp.config.compare.length,
         },
     },
     window = {
@@ -85,3 +96,4 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     }
 })
+

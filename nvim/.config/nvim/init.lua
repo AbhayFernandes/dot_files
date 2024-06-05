@@ -16,15 +16,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-	'nvim-lua/plenary.nvim',
-    'dylanaraps/wal.vim',
-	'nvim-treesitter/nvim-treesitter',
 	'mbbill/undotree',
+	'nvim-lua/plenary.nvim',
+	'nvim-treesitter/nvim-treesitter',
 	'tpope/vim-fugitive',
+    'ahmedkhalf/project.nvim',
     'ggandor/leap.nvim',
+    'j-hui/fidget.nvim',
+    'numToStr/Comment.nvim',
+    'numToStr/FTerm.nvim',
     'nvim-lualine/lualine.nvim',
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    'onsails/lspkind.nvim',
+
+    -- ssh setup
+    'ojroques/nvim-osc52',
 
     -- Alpha nvim setup
     {
@@ -51,7 +57,6 @@ require("lazy").setup({
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-	{'neovim/nvim-lspconfig'},
 	{'hrsh7th/cmp-nvim-lsp'},
 	{'hrsh7th/nvim-cmp'},
 	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
@@ -60,28 +65,17 @@ require("lazy").setup({
     {"rafamadriz/friendly-snippets" },
     {'mrcjkb/rustaceanvim', version = '^4', ft = { 'rust' }},
 
-    -- Nerd-Tree 
+    -- oil.nvim
     {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-            "3rd/image.nvim",
-        }
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
 
-    -- Copilot extensions
-    "zbirenbaum/copilot.lua",
-    {
-        "zbirenbaum/copilot-cmp",
-        config = function ()
-            require("copilot_cmp").setup()
-        end
-    },
-    'AndreM222/copilot-lualine'
+    -- neovim theme
+    { "rebelot/kanagawa.nvim", priority = 1000 , config = true, opts = ...},
 
-}, opts)
+})
 
 vim.loader.enable()
