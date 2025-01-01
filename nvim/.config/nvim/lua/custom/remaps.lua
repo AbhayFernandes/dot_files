@@ -38,5 +38,3 @@ end
 vim.keymap.set("n", "<leader>qq", toggle_qf)
 vim.keymap.set("n", "<leader>qn", "<CMD>cnext<CR>")
 vim.keymap.set("n", "<leader>qp", "<CMD>cprev<CR>")
-
-

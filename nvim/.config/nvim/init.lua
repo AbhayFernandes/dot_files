@@ -29,8 +29,12 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
     'onsails/lspkind.nvim',
 
-    -- ssh setup
-    'ojroques/nvim-osc52',
+    -- harpoon
+    {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
+    },
 
     -- inlay hints
     {
@@ -43,6 +47,7 @@ require("lazy").setup({
     },
 
     {"sindrets/diffview.nvim"},
+
     -- Alpha nvim setup
     {
         'goolord/alpha-nvim',
@@ -75,6 +80,7 @@ require("lazy").setup({
     {'saadparwaiz1/cmp_luasnip'},
     {"rafamadriz/friendly-snippets" },
     {'mrcjkb/rustaceanvim', version = '^5', lazy = false,},
+    {'mfussenegger/nvim-jdtls'},
 
     -- oil.nvim
     {
@@ -85,10 +91,49 @@ require("lazy").setup({
     },
 
     -- neovim theme
-    { 'mellow-theme/mellow.nvim', priority = 1000 },
+    { 'ellisonleao/gruvbox.nvim', priority = 1000 },
 
-    { "folke/lazydev.nvim", opts = {} },
+    { "folke/neodev.nvim", opts = {} },
 
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            preset = "helix",
+            plugins = {
+                presets = {
+                    operators = true, -- adds help for operators like d, y, ...
+                    motions = true, -- adds help for motions
+                    text_objects = true, -- help for text objects triggered after entering an operator
+                    windows = true, -- default bindings on <c-w>
+                    nav = true, -- misc bindings to work with windows
+                    z = true, -- bindings for folds, spelling and others prefixed with z
+                    g = true, -- bindings for prefixed with g
+                }
+            }
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
+    },
+
+    { 'wakatime/vim-wakatime', lazy = false },
+
+    {
+        'christoomey/vim-tmux-navigator',
+        lazy=false
+    },
+
+
+    -- copilot stuff
+    { "zbirenbaum/copilot.lua" },
+    { 'AndreM222/copilot-lualine' }
 })
 
 vim.loader.enable()
