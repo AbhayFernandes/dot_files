@@ -1,3 +1,4 @@
+
 local telescope = require("telescope")
 
 require("project_nvim").setup {
@@ -10,5 +11,4 @@ require("project_nvim").setup {
 telescope.load_extension('projects')
 
 vim.keymap.set('n', '<leader>pp', function() require'telescope'.extensions.projects.projects{} end,{})
-
 

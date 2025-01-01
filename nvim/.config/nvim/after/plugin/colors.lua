@@ -1,1 +1,2 @@
-vim.cmd('colorscheme kanagawa-dragon')
+vim.g.mellow_transparent = true
+vim.cmd('colorscheme mellow')

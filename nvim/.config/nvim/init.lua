@@ -32,6 +32,17 @@ require("lazy").setup({
     -- ssh setup
     'ojroques/nvim-osc52',
 
+    -- inlay hints
+    {
+        "MysticalDevil/inlay-hints.nvim",
+        event = "LspAttach",
+        dependencies = { "neovim/nvim-lspconfig" },
+        config = function()
+            require("inlay-hints").setup()
+        end
+    },
+
+    {"sindrets/diffview.nvim"},
     -- Alpha nvim setup
     {
         'goolord/alpha-nvim',
@@ -63,7 +74,7 @@ require("lazy").setup({
     {'SmiteshP/nvim-navic', requires = "neovim/nvim-lspconfig"},
     {'saadparwaiz1/cmp_luasnip'},
     {"rafamadriz/friendly-snippets" },
-    {'mrcjkb/rustaceanvim', version = '^4', ft = { 'rust' }},
+    {'mrcjkb/rustaceanvim', version = '^5', lazy = false,},
 
     -- oil.nvim
     {
@@ -74,7 +85,9 @@ require("lazy").setup({
     },
 
     -- neovim theme
-    { "rebelot/kanagawa.nvim", priority = 1000 , config = true, opts = ...},
+    { 'mellow-theme/mellow.nvim', priority = 1000 },
+
+    { "folke/lazydev.nvim", opts = {} },
 
 })
 
