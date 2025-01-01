@@ -3,27 +3,6 @@ local navic = require('nvim-navic')
 local navbuddy = require('nvim-navbuddy')
 local mason = require('mason-registry')
 
-local home = os.getenv("HOME")
-local workspace_dir = home .. '/.local/share/nvim/' .. vim.fn.fnamemodify(root_dir, ":p:h:t")
-
-function bemol()
-    local bemol_dir = vim.fs.find({ '.bemol' }, { upward = true, type = 'directory'})[1]
-    local ws_folders_lsp = {}
-    if bemol_dir then
-        local file = io.open(bemol_dir .. '/ws_root_folders', 'r')
-        if file then
-            for line in file:lines() do
-                table.insert(ws_folders_lsp, line)
-            end
-            file:close()
-        end
-    end
-
-    for _, line in ipairs(ws_folders_lsp) do
-        vim.lsp.buf.add_workspace_folder(line)
-    end
-end
-
 lsp_zero.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
 
@@ -55,33 +34,13 @@ require('mason').setup({})
 local jdtls_install_dir = mason.get_package("jdtls"):get_install_path()
 
 require('mason-lspconfig').setup({
+    ensure_installed = {"jdtls"},
+    automatic_installation = true,
     handlers = {
         lsp_zero.default_setup,
-        jdtls = function ()
-            require('lspconfig').jdtls.setup({
-                on_attach = function(client, bufnr)
-                    bemol()
-                end,
-                cmd = {
-                    "jdtls",
-                    "--jvm-arg=-javaagent:"
-                    .. jdtls_install_dir .. "/lombok.jar",
-                    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-                    '-Dosgi.bundles.defaultStartLevel=4',
-                    '-Declipse.product=org.eclipse.jdt.ls.core.product',
-                    '-Dlog.protocol=true',
-                    '-Dlog.level=ALL',
-                    '-Xms1g',
-                    '--add-modules=ALL-SYSTEM',
-                    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-                    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-                    '-data', workspace_dir,
-                },
-            })
-        end,
+        jdtls = function() end,
     }
 })
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -125,3 +84,22 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     }
 })
+
+local lspconfig = require 'lspconfig'
+local configs = require 'lspconfig.configs'
+
+-- Check if the config is already defined (useful when reloading this file)
+if not configs.barium then
+    configs.barium = {
+        default_config = {
+            cmd = {'barium'};
+            filetypes = {'brazil-config'};
+            root_dir = function(fname)
+                return lspconfig.util.find_git_ancestor(fname)
+            end;
+            settings = {};
+        };
+    }
+end
+
+lspconfig.barium.setup {}

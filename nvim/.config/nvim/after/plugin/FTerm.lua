@@ -1,7 +1,5 @@
 require'FTerm'.setup({
     border = 'double',
-    dimensions  = {
-    },
 })
 
 vim.keymap.set('n', '<C-J>', '<CMD>lua require("FTerm").toggle()<CR>')
