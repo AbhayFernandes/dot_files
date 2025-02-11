@@ -1,0 +1,15 @@
+font = Fanwood Text
+
+outline-width = 0
+border-width = 0
+padding-left = 35%
+padding-top = 35%
+
+width = 100%
+height = 100%
+result-spacing = 25
+num-results = 5
+
+background-color = #000A
+text-color = #f9fbff
+selection-color = #933
