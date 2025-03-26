@@ -6,7 +6,6 @@ end
 local lsp_zero = require('lsp-zero')
 local navic = require('nvim-navic')
 local navbuddy = require('nvim-navbuddy')
-local mason = require('mason-registry')
 
 lsp_zero.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
@@ -36,14 +35,17 @@ vim.g.rustaceanvim = {
 }
 
 require('mason').setup({})
-local jdtls_install_dir = mason.get_package("jdtls"):get_install_path()
-
 require('mason-lspconfig').setup({
-    ensure_installed = {"jdtls"},
+    ensure_installed = {"jdtls", "clangd"},
     automatic_installation = true,
     handlers = {
         lsp_zero.default_setup,
         jdtls = function() end,
+        clangd = function()
+            require("lspconfig").clangd.setup {
+                cmd = {"/opt/spe/opencilk/bin/clangd" },
+            }
+        end,
     }
 })
 
