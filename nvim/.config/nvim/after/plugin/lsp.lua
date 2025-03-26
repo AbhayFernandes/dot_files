@@ -1,3 +1,8 @@
+local is_code, _ = pcall(require, "vscode")
+if is_code then
+    return
+end
+
 local lsp_zero = require('lsp-zero')
 local navic = require('nvim-navic')
 local navbuddy = require('nvim-navbuddy')

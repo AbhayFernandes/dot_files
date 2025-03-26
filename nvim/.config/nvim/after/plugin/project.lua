@@ -1,4 +1,9 @@
 
+local is_code, _ = pcall(require, "vscode")
+if is_code then
+    return
+end
+
 local telescope = require("telescope")
 
 require("project_nvim").setup {

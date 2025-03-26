@@ -1,3 +1,8 @@
+local is_code, _ = pcall(require, "vscode")
+if is_code then
+    return
+end
+
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})

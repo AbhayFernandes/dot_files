@@ -1,4 +1,5 @@
 require("custom")
+local is_code, vscode = pcall(require, "vscode")
 
 -- Setup lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -15,25 +16,30 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+
 require("lazy").setup({
-	'mbbill/undotree',
-	'nvim-lua/plenary.nvim',
-	'nvim-treesitter/nvim-treesitter',
-	'tpope/vim-fugitive',
-    'ahmedkhalf/project.nvim',
-    'ggandor/leap.nvim',
-    'j-hui/fidget.nvim',
-    'numToStr/Comment.nvim',
-    'numToStr/FTerm.nvim',
-    'nvim-lualine/lualine.nvim',
-    'nvim-telescope/telescope.nvim', tag = '0.1.5',
-    'onsails/lspkind.nvim',
+	{
+        'mbbill/undotree',
+        cond = not is_code,
+    },
+    {'nvim-lua/plenary.nvim', cond = not is_code},
+    {'nvim-treesitter/nvim-treesitter', cond = not is_code},
+    {'tpope/vim-fugitive', cond = not is_code},
+    {'ahmedkhalf/project.nvim', cond = not is_code},
+    {'ggandor/leap.nvim'},
+    {'j-hui/fidget.nvim', cond = not is_code},
+    {'numToStr/Comment.nvim'},
+    {'numToStr/FTerm.nvim', cond = not is_code},
+    { 'nvim-lualine/lualine.nvim', cond = not is_code},
+    {'nvim-telescope/telescope.nvim', tag = '0.1.5', cond = not is_code},
+    {'onsails/lspkind.nvim', cond = not is_code},
 
     -- harpoon
     {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
-    dependencies = { "nvim-lua/plenary.nvim" }
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        cond = not is_code,
     },
 
     -- inlay hints
@@ -41,6 +47,7 @@ require("lazy").setup({
         "MysticalDevil/inlay-hints.nvim",
         event = "LspAttach",
         dependencies = { "neovim/nvim-lspconfig" },
+        cond = not is_code,
         config = function()
             require("inlay-hints").setup()
         end
@@ -53,11 +60,13 @@ require("lazy").setup({
         'goolord/alpha-nvim',
         config = function ()
             require'alpha'.setup(require'alpha.themes.startify'.config)
-        end
+        end,
+        cond = not is_code,
     },
 
     -- Nvim-Navbuddy Setup
     {"neovim/nvim-lspconfig",
+        cond = not is_code,
     dependencies = {
         {
             "SmiteshP/nvim-navbuddy",
@@ -70,17 +79,17 @@ require("lazy").setup({
     }},
 
 	-- LSP-zero setup
-	{'williamboman/mason.nvim'},
-	{'williamboman/mason-lspconfig.nvim'},
-	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-	{'hrsh7th/cmp-nvim-lsp'},
-	{'hrsh7th/nvim-cmp'},
-	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"},},
-    {'SmiteshP/nvim-navic', requires = "neovim/nvim-lspconfig"},
-    {'saadparwaiz1/cmp_luasnip'},
-    {"rafamadriz/friendly-snippets" },
-    {'mrcjkb/rustaceanvim', version = '^5', lazy = false,},
-    {'mfussenegger/nvim-jdtls'},
+	{'williamboman/mason.nvim', cond = not is_code},
+	{'williamboman/mason-lspconfig.nvim', cond = not is_code},
+	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', cond = not is_code},
+	{'hrsh7th/cmp-nvim-lsp', cond = not is_code},
+	{'hrsh7th/nvim-cmp', cond = not is_code},
+	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"}, cond = not is_code},
+    {'SmiteshP/nvim-navic', requires = "neovim/nvim-lspconfig", cond = not is_code},
+    {'saadparwaiz1/cmp_luasnip', cond = not is_code},
+    {"rafamadriz/friendly-snippets", cond = not is_code},
+    {'mrcjkb/rustaceanvim', version = '^5', lazy = false, cond = not is_code},
+    {'mfussenegger/nvim-jdtls', cond = not is_code},
 
     -- oil.nvim
     {
@@ -88,16 +97,18 @@ require("lazy").setup({
         opts = {},
         -- Optional dependencies
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        cond = not is_code,
     },
 
     -- neovim theme
     { 'ellisonleao/gruvbox.nvim', priority = 1000 },
 
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/neodev.nvim", opts = {}, cond = not is_code },
 
     {
         "folke/which-key.nvim",
         event = "VeryLazy",
+        cond = not is_code,
         opts = {
             preset = "helix",
             plugins = {
@@ -123,17 +134,29 @@ require("lazy").setup({
         },
     },
 
-    { 'wakatime/vim-wakatime', lazy = false },
+    { 'wakatime/vim-wakatime', lazy = false, cond = not is_code },
 
     {
         'christoomey/vim-tmux-navigator',
-        lazy=false
+        lazy=false,
+        cond = not is_code,
     },
 
 
-    -- copilot stuff
-    { "zbirenbaum/copilot.lua" },
-    { 'AndreM222/copilot-lualine' }
+    -- supermaven/AI
+    {
+      "supermaven-inc/supermaven-nvim",
+      cond = not is_code,
+    },
+
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        dependencies = {
+          { "zbirenbaum/copilot.lua" }, -- or zbirenbaum/copilot.lua
+          { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+        },
+        build = "make tiktoken", -- Only on MacOS or Linux
+    },
 })
 
 vim.loader.enable()

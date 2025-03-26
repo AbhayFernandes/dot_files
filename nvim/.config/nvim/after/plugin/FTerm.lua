@@ -1,3 +1,8 @@
+local is_code, vscode = pcall(require, "vscode")
+if is_code then
+    return
+end
+
 require'FTerm'.setup({
     border = 'double',
 })

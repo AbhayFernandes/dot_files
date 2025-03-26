@@ -1,3 +1,8 @@
+local is_code, _ = pcall(require, "vscode")
+if is_code then
+    return
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
