@@ -16,44 +16,15 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-
 require("lazy").setup({
-	{
-        'mbbill/undotree',
-        cond = not is_code,
-    },
-    {'nvim-lua/plenary.nvim', cond = not is_code},
     {'nvim-treesitter/nvim-treesitter', cond = not is_code},
-    {'tpope/vim-fugitive', cond = not is_code},
     {'ahmedkhalf/project.nvim', cond = not is_code},
     {'ggandor/leap.nvim'},
     {'j-hui/fidget.nvim', cond = not is_code},
     {'numToStr/Comment.nvim'},
     {'numToStr/FTerm.nvim', cond = not is_code},
-    { 'nvim-lualine/lualine.nvim', cond = not is_code},
+    {'nvim-lualine/lualine.nvim', cond = not is_code},
     {'nvim-telescope/telescope.nvim', tag = '0.1.5', cond = not is_code},
-    {'onsails/lspkind.nvim', cond = not is_code},
-
-    -- harpoon
-    {
-        "ThePrimeagen/harpoon",
-        branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        cond = not is_code,
-    },
-
-    -- inlay hints
-    {
-        "MysticalDevil/inlay-hints.nvim",
-        event = "LspAttach",
-        dependencies = { "neovim/nvim-lspconfig" },
-        cond = not is_code,
-        config = function()
-            require("inlay-hints").setup()
-        end
-    },
-
-    {"sindrets/diffview.nvim"},
 
     -- Alpha nvim setup
     {
@@ -64,32 +35,27 @@ require("lazy").setup({
         cond = not is_code,
     },
 
-    -- Nvim-Navbuddy Setup
-    {"neovim/nvim-lspconfig",
-        cond = not is_code,
-    dependencies = {
-        {
-            "SmiteshP/nvim-navbuddy",
-            dependencies = {
-                "SmiteshP/nvim-navic",
-                "MunifTanjim/nui.nvim"
-            },
-            opts = { lsp = { auto_attach = true } }
-        }
-    }},
-
-	-- LSP-zero setup
+	-- mason.nvim
 	{'williamboman/mason.nvim', cond = not is_code},
-	{'williamboman/mason-lspconfig.nvim', cond = not is_code},
-	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', cond = not is_code},
-	{'hrsh7th/cmp-nvim-lsp', cond = not is_code},
-	{'hrsh7th/nvim-cmp', cond = not is_code},
-	{'L3MON4D3/LuaSnip', dependencies = {"rafamadriz/friendly-snippets"}, cond = not is_code},
-    {'SmiteshP/nvim-navic', requires = "neovim/nvim-lspconfig", cond = not is_code},
-    {'saadparwaiz1/cmp_luasnip', cond = not is_code},
-    {"rafamadriz/friendly-snippets", cond = not is_code},
-    {'mrcjkb/rustaceanvim', version = '^5', lazy = false, cond = not is_code},
-    {'mfussenegger/nvim-jdtls', cond = not is_code},
+    {
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+
+        version = '1.*',
+        opts = {
+            keymap = { preset = 'super-tab' },
+
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+            completion = { documentation = { auto_show = true } },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+            fuzzy = { implementation = "prefer_rust_with_warning" }
+        },
+        opts_extend = { "sources.default" }
+    },
 
     -- oil.nvim
     {
@@ -103,37 +69,6 @@ require("lazy").setup({
     -- neovim theme
     { 'ellisonleao/gruvbox.nvim', priority = 1000 },
 
-    { "folke/neodev.nvim", opts = {}, cond = not is_code },
-
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        cond = not is_code,
-        opts = {
-            preset = "helix",
-            plugins = {
-                presets = {
-                    operators = true, -- adds help for operators like d, y, ...
-                    motions = true, -- adds help for motions
-                    text_objects = true, -- help for text objects triggered after entering an operator
-                    windows = true, -- default bindings on <c-w>
-                    nav = true, -- misc bindings to work with windows
-                    z = true, -- bindings for folds, spelling and others prefixed with z
-                    g = true, -- bindings for prefixed with g
-                }
-            }
-        },
-        keys = {
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ global = false })
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
-        },
-    },
-
     { 'wakatime/vim-wakatime', lazy = false, cond = not is_code },
 
     {
@@ -141,7 +76,6 @@ require("lazy").setup({
         lazy=false,
         cond = not is_code,
     },
-
 
     -- supermaven/AI
     {
