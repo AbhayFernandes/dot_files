@@ -25,6 +25,9 @@ require("lazy").setup({
     {'numToStr/FTerm.nvim', cond = not is_code},
     {'nvim-lualine/lualine.nvim', cond = not is_code},
     {'nvim-telescope/telescope.nvim', tag = '0.1.5', cond = not is_code},
+    { "neovim/nvim-lspconfig",   cond = not is_code  },
+    { "williamboman/mason-lspconfig.nvim", cond = not is_code },
+
 
     -- Alpha nvim setup
     {
@@ -54,7 +57,8 @@ require("lazy").setup({
             },
             fuzzy = { implementation = "prefer_rust_with_warning" }
         },
-        opts_extend = { "sources.default" }
+        opts_extend = { "sources.default" },
+        cond = not is_code,
     },
 
     -- oil.nvim
@@ -83,14 +87,6 @@ require("lazy").setup({
       cond = not is_code,
     },
 
-    {
-        "CopilotC-Nvim/CopilotChat.nvim",
-        dependencies = {
-          { "zbirenbaum/copilot.lua" }, -- or zbirenbaum/copilot.lua
-          { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-        },
-        build = "make tiktoken", -- Only on MacOS or Linux
-    },
 })
 
 vim.loader.enable()

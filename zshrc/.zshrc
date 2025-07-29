@@ -116,9 +116,16 @@ eval "$(zoxide init zsh)"
 # bun completions
 [ -s "/Users/abhayf/.bun/_bun" ] && source "/Users/abhayf/.bun/_bun"
 
+alias zed="zeditor"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="/home/abhay/.local/share/gem/ruby/3.3.0/bin:$PATH"
 export GEM_HOME=$HOME/.gem
+
+# ~/.tmux/plugins
+export PATH=$HOME/.tmux/plugins/tmux-session-wizard/bin:$PATH
+# ~/.config/tmux/plugins
+export PATH=$HOME/.config/tmux/plugins/tmux-session-wizard/bin:$PATH
