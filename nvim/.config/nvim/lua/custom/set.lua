@@ -28,4 +28,11 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
+vim.opt.clipboard = 'unnamedplus'
+
 vim.g.mapleader = " "
+
+if vim.g.neovide then
+    vim.g.neovide_scale_factor = 1.2
+    vim.api.nvim_command "set autochdir"
+end

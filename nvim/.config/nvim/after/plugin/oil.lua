@@ -1,8 +1,3 @@
-local is_code, _ = pcall(require, "vscode")
-if is_code then
-    return
-end
-
 local oil = require("oil")
 
 oil.setup({

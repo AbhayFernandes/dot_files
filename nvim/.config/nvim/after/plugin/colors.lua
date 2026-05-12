@@ -1,8 +1,7 @@
 vim.g.mellow_transparent = true
 
 require("gruvbox").setup({
-    dim_inactive = false,
-    transparent_mode = true
+    transparent_mode = false
 })
 
-vim.cmd('colorscheme gruvbox')
+vim.cmd("colorscheme gruvbox")

@@ -1,1 +1,3 @@
 theme = Gruvbox Dark Hard
+clipboard-write=allow
+keybind = shift+enter=text:\x1b\r

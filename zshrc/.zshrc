@@ -83,8 +83,6 @@ fi
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-
-
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -102,14 +100,14 @@ export PATH="$HOME/opt/cmake/bin:$PATH"
 eval "$(starship init zsh)"
 
 [ -f "/home/abhayf/.ghcup/env" ] && . "/home/abhayf/.ghcup/env" # ghcup-env
+[ -f "/home/linuxbrew/.linuxbrew/bin/brew" ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source <(fzf --zsh)
 eval "$(zoxide init zsh)"
+alias cd="z"
+
+[ -f "/Users/abhayf/.ghcup/env" ] && . "/Users/abhayf/.ghcup/env" # ghcup-env
 
 # BEGIN opam configuration
-# This is useful if you're using opam as it adds:
-#   - the correct directories to the PATH
-#   - auto-completion for the opam binary
-# This section can be safely removed at any time if needed.
 [[ ! -r '/Users/abhayf/.opam/opam-init/init.zsh' ]] || source '/Users/abhayf/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
 
@@ -118,12 +116,14 @@ eval "$(zoxide init zsh)"
 
 alias zed="zeditor"
 
+export PATH="$HOME/scripts:$PATH"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
 export PATH="/home/abhay/.local/share/gem/ruby/3.3.0/bin:$PATH"
 export GEM_HOME=$HOME/.gem
+export PATH="$HOME/go/bin:$PATH"
 
 # ~/.tmux/plugins
 export PATH=$HOME/.tmux/plugins/tmux-session-wizard/bin:$PATH

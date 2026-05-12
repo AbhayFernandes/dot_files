@@ -14,6 +14,10 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
+vim.keymap.set("n", "<leader>p", "\"+p")
+vim.keymap.set("v", "<leader>p", "\"+p")
+vim.keymap.set("n", "<leader>P", "\"+P")
+
 vim.keymap.set("n", "<leader>f", function()
 	vim.lsp.format()
 end)
@@ -38,3 +42,36 @@ end
 vim.keymap.set("n", "<leader>qq", toggle_qf)
 vim.keymap.set("n", "<leader>qn", "<CMD>cnext<CR>")
 vim.keymap.set("n", "<leader>qp", "<CMD>cprev<CR>")
+
+-- Unimpaired-style quickfix nav.
+vim.keymap.set("n", "]q", "<CMD>cnext<CR>", { desc = "Next quickfix item" })
+vim.keymap.set("n", "[q", "<CMD>cprev<CR>", { desc = "Previous quickfix item" })
+vim.keymap.set("n", "]Q", "<CMD>clast<CR>", { desc = "Last quickfix item" })
+vim.keymap.set("n", "[Q", "<CMD>cfirst<CR>", { desc = "First quickfix item" })
+
+-- Auto-open quickfix when a command populates it.
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+    pattern = { "[^l]*" },
+    command = "cwindow",
+})
+
+-- Close the quickfix window with `q` when inside it.
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function(ev)
+        vim.keymap.set("n", "q", "<CMD>cclose<CR>", { buffer = ev.buf, silent = true })
+    end,
+})
+
+-- Terminal split at project root.
+vim.keymap.set("n", "<leader>tg", function()
+    local root = vim.fs.root(0, { ".git", "build.gradle", "settings.gradle" }) or vim.loop.cwd()
+    vim.cmd("botright split | terminal")
+    vim.api.nvim_chan_send(vim.b.terminal_job_id, "cd " .. root .. "\n")
+end, { desc = "Terminal at project root" })
+
+if vim.g.neovide == true then
+  vim.api.nvim_set_keymap("n", "<C-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>", { silent = true })
+  vim.api.nvim_set_keymap("n", "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>", { silent = true })
+  vim.api.nvim_set_keymap("n", "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true })
+end
