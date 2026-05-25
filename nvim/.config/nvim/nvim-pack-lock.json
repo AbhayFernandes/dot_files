@@ -1,0 +1,96 @@
+{
+  "plugins": {
+    "Comment.nvim": {
+      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "src": "ssh://git@github.com/numToStr/Comment.nvim"
+    },
+    "alpha-nvim": {
+      "rev": "6c6a89d5b068b5251c8bdf0dd57bb921bcfeeb09",
+      "src": "ssh://git@github.com/goolord/alpha-nvim"
+    },
+    "bigfile.nvim": {
+      "rev": "33eb067e3d7029ac77e081cfe7c45361887a311a",
+      "src": "ssh://git@github.com/LunarVim/bigfile.nvim"
+    },
+    "cmp-nvim-lsp": {
+      "rev": "cbc7b02bb99fae35cb42f514762b89b5126651ef",
+      "src": "ssh://git@github.com/hrsh7th/cmp-nvim-lsp"
+    },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "ssh://git@github.com/sindrets/diffview.nvim"
+    },
+    "fidget.nvim": {
+      "rev": "82404b196e73a00b1727a91903beef5ddc319d22",
+      "src": "ssh://git@github.com/j-hui/fidget.nvim"
+    },
+    "gruvbox.nvim": {
+      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
+      "src": "ssh://git@github.com/ellisonleao/gruvbox.nvim"
+    },
+    "leap.nvim": {
+      "rev": "59d70b1bdf8e76e0637e6ebcc150fb6767f67fc5",
+      "src": "https://codeberg.org/andyg/leap.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
+      "src": "ssh://git@github.com/nvim-lualine/lualine.nvim"
+    },
+    "neodev.nvim": {
+      "rev": "46aa467dca16cf3dfe27098042402066d2ae242d",
+      "src": "ssh://git@github.com/folke/neodev.nvim"
+    },
+    "nvim-cmp": {
+      "rev": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
+      "src": "ssh://git@github.com/hrsh7th/nvim-cmp"
+    },
+    "nvim-lspconfig": {
+      "rev": "a4ed4e761c400849e8c9f8bda33e5083f890268c",
+      "src": "ssh://git@github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-spider": {
+      "rev": "4fdd56a4f45bca13a607632e15a6f9f8d1b1f99e",
+      "src": "ssh://git@github.com/chrisgrieser/nvim-spider"
+    },
+    "nvim-treesitter": {
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "src": "ssh://git@github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
+      "src": "ssh://git@github.com/nvim-treesitter/nvim-treesitter-textobjects"
+    },
+    "nvim-web-devicons": {
+      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
+      "src": "ssh://git@github.com/nvim-tree/nvim-web-devicons"
+    },
+    "oil.nvim": {
+      "rev": "b91ee5a77a6a9605d9c1aaf4fda74b66082c8297",
+      "src": "ssh://git@github.com/stevearc/oil.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "ssh://git@github.com/nvim-lua/plenary.nvim"
+    },
+    "quicker.nvim": {
+      "rev": "4a6883cb13fe097a20a046eb55f6dffd239276e3",
+      "src": "ssh://git@github.com/stevearc/quicker.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "7d324792b7943e4aa16ad007212e6acc6f9fe335",
+      "src": "ssh://git@github.com/nvim-telescope/telescope.nvim"
+    },
+    "vim-tmux-navigator": {
+      "rev": "e41c431a0c7b7388ae7ba341f01a0d217eb3a432",
+      "src": "ssh://git@github.com/christoomey/vim-tmux-navigator"
+    },
+    "wayfinder.nvim": {
+      "rev": "33841c6f4aa47297e5629456c42f5cf036257d01",
+      "src": "ssh://git@github.com/error311/wayfinder.nvim"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "ssh://git@github.com/folke/which-key.nvim"
+    }
+  }
+}

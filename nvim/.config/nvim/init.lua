@@ -5,7 +5,9 @@ vim.api.nvim_create_autocmd("PackChanged", {
     callback = function(ev)
         if ev.data.spec.name == "nvim-treesitter"
             and (ev.data.kind == "install" or ev.data.kind == "update") then
-            vim.cmd("TSUpdate")
+            if vim.fn.executable("tree-sitter") == 1 then
+                vim.cmd("TSUpdate")
+            end
         end
     end,
 })
@@ -26,7 +28,6 @@ vim.pack.add({
     { src = "https://github.com/goolord/alpha-nvim" },
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
     { src = "https://github.com/hrsh7th/nvim-cmp" },
-    { src = "https://github.com/mfussenegger/nvim-jdtls" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/folke/neodev.nvim" },
@@ -36,18 +37,12 @@ vim.pack.add({
     { src = "https://github.com/stevearc/quicker.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/mfussenegger/nvim-dap" },
-    { src = "https://github.com/rcarriga/nvim-dap-ui" },
-    { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
-    { src = "https://github.com/nvim-neotest/nvim-nio" },
-    { src = "https://github.com/L3MON4D3/LuaSnip" },
-    { src = "https://github.com/saadparwaiz1/cmp_luasnip" },
-    { src = "https://github.com/rafamadriz/friendly-snippets" },
-    { src = "https://github.com/ThePrimeagen/harpoon", branch = "harpoon2" },
 }, { load = true })
 
 -- Plugin setup.
-require("nvim-treesitter").install({ "lua", "typescript", "javascript", "rust", "python", "java" })
+if vim.fn.executable("tree-sitter") == 1 then
+    require("nvim-treesitter").install({ "lua", "typescript", "javascript", "rust", "python" })
+end
 vim.api.nvim_create_autocmd("FileType", {
     callback = function() pcall(vim.treesitter.start) end,
 })

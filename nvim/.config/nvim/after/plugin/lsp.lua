@@ -27,16 +27,11 @@ vim.lsp.config('tsserver', {
 vim.lsp.enable('tsserver')
 
 local cmp = require('cmp')
-local ls = require('luasnip')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
-    snippet = {
-        expand = function(args) ls.lsp_expand(args.body) end,
-    },
     sources = {
         {name = 'nvim_lsp', priority_weight = 7},
-        {name = 'luasnip'},
         {name = 'nvim_lua'},
         {name = 'path'},
     },
