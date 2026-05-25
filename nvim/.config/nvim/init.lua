@@ -29,6 +29,7 @@ vim.pack.add({
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
     { src = "https://github.com/hrsh7th/nvim-cmp" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/mrcjkb/rustaceanvim" },
     { src = "https://github.com/ellisonleao/gruvbox.nvim" },
     { src = "https://github.com/folke/neodev.nvim" },
     { src = "https://github.com/folke/which-key.nvim" },
